@@ -21,14 +21,8 @@ const {
 
 module.exports = {
     details: async (req, res) => {
-        jwt.verify(req.token, process.env.JWT_KEY, (err, authData) => {
-            if(err) {
-                return res.status(409).json({
-                    error: "Something went wrong!" // 500
-                });
-            } else {
-                return res.json(authData);
-            }
+        return res.json({
+            data: req.jwt_data
         });
     },
     changePassword: async (req, res) => {
