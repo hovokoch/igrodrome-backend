@@ -4,7 +4,6 @@ module.exports = {
     location_decimal_length_after_dot: 6,
     uploads: {
         game_images: "games",
-        project_images: "project-images",
         user_images: "user-avatars",
     },
     image_sizes: {
@@ -39,19 +38,7 @@ module.exports = {
         // 'android',
         // 'ios',
     ],
-    project: {
-        p_code: {
-            min: 100000,
-            max: 999999,
-        },
-        image_upload_max_count: 10, // 10-20
-    },
     seed: {
-        project: {
-            random_images_count: 10, // depends on projects images count in "public/seed-images/projects/project-*.*"
-            images_max_count: 3, // 3-10
-            count: 50, // 10-100
-        },
         game: {
             random_images_count: 10, // depends on games images count in "public/seed-images/games/game-*.*"
         },

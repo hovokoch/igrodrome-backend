@@ -5,10 +5,6 @@ const moment = require('moment');
 module.exports = (sequelize, DataTypes) => {
     const now = new Date();
     const Game = sequelize.define('Game', {
-        project_id: {
-            type: DataTypes.INTEGER, // (11),
-            allowNull: true
-        },
         user_id: {
             type: DataTypes.INTEGER, // (11),
             allowNull: false
@@ -64,7 +60,6 @@ module.exports = (sequelize, DataTypes) => {
 
     Game.associate = function (models) {
         Game.belongsTo(models.User, { as: 'user', foreignKey: 'user_id' });
-        Game.belongsTo(models.Project, { as: 'project', foreignKey: 'project_id' });
     };
 
     return Game;

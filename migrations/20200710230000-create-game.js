@@ -9,16 +9,6 @@ module.exports = {
                 primaryKey: true,
                 type: Sequelize.INTEGER
             },
-            project_id: {
-                type: Sequelize.INTEGER,
-                allowNull: true,
-                onUpdate: "CASCADE",
-                onDelete: "SET NULL",
-                references: {
-                    model: 'projects',
-                    key: 'id'
-                }
-            },
             user_id: {
                 type: Sequelize.INTEGER,
                 allowNull: false,
