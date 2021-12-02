@@ -3,7 +3,6 @@ module.exports = {
     location_decimal_length: 11,
     location_decimal_length_after_dot: 6,
     uploads: {
-        customer_images: "customer-avatars",
         game_images: "games",
         project_images: "project-images",
         user_images: "user-avatars",
@@ -29,7 +28,6 @@ module.exports = {
         }
     },
     user_email_token_limit: 3, // 3
-    customer_email_token_limit: 3, // 3
     image_name_length: 20, // 20
     image_max_size: 28, // 5-28 MB
     auth_providers: [

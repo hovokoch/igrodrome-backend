@@ -36,7 +36,7 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   Role.associate = function (models) {
-    Role.hasMany(models.Customer, { as: 'customers', foreignKey: 'role_id' });
+    Role.hasMany(models.User, { as: 'users', foreignKey: 'role_id' });
     Role.hasMany(models.Permission, { as: 'permissions', foreignKey: 'role_id' });
   };
 

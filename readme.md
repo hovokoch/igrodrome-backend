@@ -19,24 +19,15 @@
 
 > In the Postman auth endpoint-requests (login, third-party-auth)
 > add the following test script to the API-endpoints,
-> and use **USER_ID_TOKEN** / **CUSTOMER_ID_TOKEN** global variable for auth-protected endpoints.
-> For example: "Bearer {{USER_ID_TOKEN}}" / "Bearer {{CUSTOMER_ID_TOKEN}}" as the "Authorization" Header.
+> and use **USER_ID_TOKEN** global variable for auth-protected endpoints.
+> For example: "Bearer {{USER_ID_TOKEN}}" as the "Authorization" Header.
 > These are Postman environment variables for the Bearer-based authentication tokens.
 ```
-# for users
 var data = pm.response.json();
 if (data.token) {
     pm.globals.set("USER_ID_TOKEN", data.token);
 } else {
     pm.globals.set("USER_ID_TOKEN", '');
-}
-
-# for customers
-var data = pm.response.json();
-if (data.token) {
-    pm.globals.set("CUSTOMER_ID_TOKEN", data.token);
-} else {
-    pm.globals.set("CUSTOMER_ID_TOKEN", '');
 }
 ```
 

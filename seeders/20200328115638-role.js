@@ -11,15 +11,15 @@ module.exports = {
       const now = new Date();
 
       await Role.create({
-          name: "Customer Role 1",
-          alias: 'customer_role_1',
+          name: "User Role 1",
+          alias: 'user_role_1',
           priority: 10,
           created_at: now,
           updated_at: now,
       });
       await Role.create({
-          name: "Customer Role 2",
-          alias: 'customer_role_2',
+          name: "User Role 2",
+          alias: 'user_role_2',
           priority: 20,
           created_at: now,
           updated_at: now,

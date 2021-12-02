@@ -19,6 +19,7 @@ module.exports = {
           password: process.env.DEV_USER_1_PASS ? process.env.DEV_USER_1_PASS : 'secret',
       };
       await User.create({
+          role_id: 1,
           name: "User 1",
           // username: null,
           email: user1.email,
@@ -45,6 +46,7 @@ module.exports = {
           password: process.env.DEV_USER_2_PASS ? process.env.DEV_USER_2_PASS : 'secret',
       };
       await User.create({
+          role_id: 2,
           name: "User 2",
           // username: null,
           email: user2.email,

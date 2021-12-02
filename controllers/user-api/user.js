@@ -15,14 +15,26 @@ const multiSharp = require('./../../utilities/multi-sharp');
 
 const {
     User,
+    Role,
 } = require('./../../models');
 
 
 
 module.exports = {
     details: async (req, res) => {
-        return res.json({
-            data: req.jwt_data
+        const foundUser = await User.findOne({
+            where: {
+                email: req.jwt_data.email,
+            },
+            include: [
+                { model: Role, as: 'role'}
+            ]
+        });
+        const roleData = foundUser.role.dataValues;
+
+        return res.status(200).json({
+            role_id: roleData.id,
+            ...req.jwt_data,
         });
     },
     changePassword: async (req, res) => {

@@ -29,24 +29,6 @@ module.exports = {
             },
         });
     },
-    customerUpload: function () {
-        return multer({
-            storage: multer.diskStorage({
-                destination: function (req, file, cb) {
-                    const filePath = path.join(__dirname, `./../uploads/${appConfigs.uploads.customer_images}/original/${req.custom_dates_folder}`);
-                    cb(null, filePath);
-                },
-                filename: this.generateFilename
-            }),
-            limits: {
-                fileSize: 1024 * 1024 * appConfigs.image_max_size // MB
-            },
-            fileFilter: (req, file, cb) => {
-                let valid = (file.mimetype === 'image/jpeg' || file.mimetype === 'image/jpg' || file.mimetype === 'image/png');
-                cb(null, valid);
-            },
-        });
-    },
     gameUpload: function () {
         return multer({
             storage: multer.diskStorage({

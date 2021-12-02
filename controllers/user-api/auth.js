@@ -72,11 +72,11 @@ module.exports = {
 
         try {
             jwt.sign({
-                id: foundUser.id,
-                email: foundUser.email,
-                avatar: foundUser.avatar,
-                name: foundUser.name,
-                role: foundUser.role
+                id: foundUser.dataValues.id,
+                email: foundUser.dataValues.email,
+                avatar: foundUser.dataValues.avatar,
+                name: foundUser.dataValues.name,
+                role: foundUser.dataValues.role,
             }, process.env.JWT_KEY, { expiresIn: process.env.JWT_EXPIRATION_TIME }, (err, token) => {
                 if (err) {
                     return res.status(403).json({
@@ -92,6 +92,7 @@ module.exports = {
                     address: foundUser.dataValues.address,
                     birth_date: foundUser.dataValues.birth_date,
                     gender: foundUser.dataValues.gender,
+                    role: foundUser.dataValues.role,
                 });
             });
         } catch (err) {

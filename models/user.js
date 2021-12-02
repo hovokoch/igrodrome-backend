@@ -3,6 +3,10 @@
 module.exports = (sequelize, DataTypes) => {
   const now = new Date();
   const User = sequelize.define('User', {
+    role_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
     name: {
       type: DataTypes.STRING(250),
       allowNull: true,
@@ -80,6 +84,7 @@ module.exports = (sequelize, DataTypes) => {
 
   User.associate = (models) => {
     User.hasMany(models.Game, { as: 'games', foreignKey: 'user_id' });
+    User.belongsTo(models.Role, { as: 'role', foreignKey: 'role_id' });
   };
 
   return User;

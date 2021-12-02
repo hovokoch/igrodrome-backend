@@ -47,7 +47,6 @@ app.use(bodyParser.json());
 app.use('/api-doc/', express.static(path.join(__dirname, 'collections')));
 app.use('/public', express.static(path.join(__dirname, 'public')));
 app.use('/user-avatars', express.static(path.join(__dirname, 'uploads/' + appConfigs.uploads.user_images)));
-app.use('/customer-avatars', express.static(path.join(__dirname, 'uploads/' + appConfigs.uploads.customer_images)));
 app.use('/games', express.static(path.join(__dirname, 'uploads/' + appConfigs.uploads.game_images)));
 app.use('/project-images', express.static(path.join(__dirname, 'uploads/' + appConfigs.uploads.project_images)));
 
@@ -61,10 +60,6 @@ app.use('/user-api/v1/auth', require('./routes/user-api/auth'));
 app.use('/user-api/v1/user', require('./routes/user-api/user'));
 app.use('/user-api/v1/game', require('./routes/user-api/game'));
 app.use('/user-api/v1/menu', require('./routes/user-api/menu'));
-
-// Customer API
-app.use('/customer-api/v1/auth', require('./routes/customer-api/auth'));
-app.use('/customer-api/v1/customer', require('./routes/customer-api/customer'));
 
 // Handling errors for 404 not-founds
 app.use((req, res) => {

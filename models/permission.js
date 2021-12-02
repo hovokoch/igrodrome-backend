@@ -3,7 +3,7 @@
 module.exports = (sequelize, DataTypes) => {
   const now = new Date();
   const Permission = sequelize.define('Permission', {
-    admin_id: {
+    user_id: {
       type: DataTypes.INTEGER, // (11),
       allowNull: false
     },
@@ -39,7 +39,7 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   Permission.associate = function (models) {
-    Permission.belongsTo(models.Admin, { as: 'admin', foreignKey: 'admin_id' });
+    Permission.belongsTo(models.User, { as: 'user', foreignKey: 'user_id' });
   };
 
   return Permission;
