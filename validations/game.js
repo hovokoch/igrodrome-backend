@@ -1,6 +1,6 @@
 'use strict';
 
-const helper = require('./../../utilities/helper');
+const helper = require('./../utilities/helper');
 
 module.exports = {
     history: (data) => {

@@ -1,22 +1,22 @@
 
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const validate = require('./../../validations/user/user');
-const helper = require('./../../utilities/helper');
-const appConfigs = require('./../../config/app');
+const validate = require('./../validations/user');
+const helper = require('./../utilities/helper');
+const appConfigs = require('./../config/app');
 
-const emailConfigs = require('../../config/email');
+const emailConfigs = require('../config/email');
 const mailgun = require('mailgun-js');
 const email = emailConfigs[process.env.NODE_ENV];
 const mg = mailgun({ apiKey: email.api_key, domain: email.domain });
-const inlineHtml = require('./../../utilities/inline-html');
+const inlineHtml = require('./../utilities/inline-html');
 const path = require('path');
-const multiSharp = require('./../../utilities/multi-sharp');
+const multiSharp = require('./../utilities/multi-sharp');
 
 const {
     User,
     Role,
-} = require('./../../models');
+} = require('./../models');
 
 
 

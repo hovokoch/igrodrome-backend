@@ -3,7 +3,7 @@
 const validator = require('validator');
 const isEmpty = require('lodash.isempty');
 const moment = require('moment');
-const helper = require('./../../utilities/helper');
+const helper = require('./../utilities/helper');
 
 module.exports = {
     changePassword: (data) => {

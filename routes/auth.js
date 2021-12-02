@@ -1,9 +1,9 @@
 
 const { Router } = require('express');
 const router = Router();
-const authController = require('./../../controllers/user-api/auth');
-const registerUpload = require('./../../utilities/multer').userUpload();
-const buildFolderStructure = require('./../../utilities/folder-structure');
+const authController = require('./../controllers/auth');
+const registerUpload = require('./../utilities/multer').userUpload();
+const buildFolderStructure = require('./../utilities/folder-structure');
 
 
 

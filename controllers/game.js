@@ -4,14 +4,14 @@ const path = require('path');
 const port = process.env.APP_PORT;
 const env = process.env.NODE_ENV;
 const apiUrlPrefix = process.env.APP_URL + (env === 'development' ? ':' + port : '');
-const multiSharp = require('./../../utilities/multi-sharp');
+const multiSharp = require('./../utilities/multi-sharp');
 
-const validate = require('./../../validations/user/game');
+const validate = require('./../validations/game');
 const {
     User,
     Game,
-} = require('./../../models');
-const appConfigs = require('./../../config/app');
+} = require('./../models');
+const appConfigs = require('./../config/app');
 
 
 
@@ -107,8 +107,8 @@ module.exports = {
             next = '';
         }
 
-        const prevPage = `${apiUrlPrefix}/user-api/v1/games/history?per=${data.per}&page=${prev}`;
-        const nextPage = `${apiUrlPrefix}/user-api/v1/games/history?per=${data.per}&page=${next}`;
+        const prevPage = `${apiUrlPrefix}/v1/games/history?per=${data.per}&page=${prev}`;
+        const nextPage = `${apiUrlPrefix}/v1/games/history?per=${data.per}&page=${next}`;
 
         return res.status(200).json({
             per: data.per,

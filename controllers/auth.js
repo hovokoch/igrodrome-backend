@@ -1,14 +1,14 @@
 
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const appConfigs = require('./../../config/app');
+const appConfigs = require('./../config/app');
 const path = require('path');
-const multiSharp = require('./../../utilities/multi-sharp');
+const multiSharp = require('./../utilities/multi-sharp');
 
-const validate = require('./../../validations/user/auth');
+const validate = require('./../validations/auth');
 const {
     User,
-} = require('./../../models');
+} = require('./../models');
 
 
 

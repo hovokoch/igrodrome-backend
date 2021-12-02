@@ -55,9 +55,9 @@ app.use('/games', express.static(path.join(__dirname, 'uploads/' + appConfigs.up
 app.get('/', require('./routes/main').main);
 
 // Client API
-app.use('/user-api/v1/auth', require('./routes/user-api/auth'));
-app.use('/user-api/v1/user', require('./routes/user-api/user'));
-app.use('/user-api/v1/game', require('./routes/user-api/game'));
+app.use('/v1/auth', require('./routes/auth'));
+app.use('/v1/user', require('./routes/user'));
+app.use('/v1/game', require('./routes/game'));
 
 // Handling errors for 404 not-founds
 app.use((req, res) => {

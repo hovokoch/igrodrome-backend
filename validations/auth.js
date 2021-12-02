@@ -3,8 +3,8 @@
 const moment = require('moment');
 const validator = require('validator');
 const isEmpty = require('lodash.isempty');
-const appConfigs = require('./../../config/app');
-const helper = require('./../../utilities/helper');
+const appConfigs = require('./../config/app');
+const helper = require('./../utilities/helper');
 
 module.exports = {
     register: (data) => {
