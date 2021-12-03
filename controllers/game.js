@@ -1,10 +1,8 @@
 
-const fs = require('fs');
 const path = require('path');
 const port = process.env.APP_PORT;
 const env = process.env.NODE_ENV;
 const apiUrlPrefix = process.env.APP_URL + (env === 'development' ? ':' + port : '');
-const multiSharp = require('./../utilities/multi-sharp');
 
 const validate = require('./../validations/game');
 const {
@@ -16,26 +14,21 @@ const appConfigs = require('./../config/app');
 
 
 module.exports = {
-    upload: async (req, res) => {
-        if (!req.file) {
-            return res.status(403).json({
-                error: "Body image field required as Image (jpeg/jpg or png) file!"
-            });
+    create: async (req, res) => {
+        let imageName = null;
+        if (req.file) {
+            imageName = req.file.filename;
         }
 
-        const imageName = req.file.filename;
-
         const user = await User.findOne({
-            where: { email: req.user.email },
+            where: { email: req.jwt_data.email },
             attributes: ['id']
         });
-        let game;
         if (user) {
-            game = await Game.create({
+            await Game.create({
                 user_id: user.dataValues.id,
                 image: imageName,
                 text: null,
-                point: 0,
                 status: 0, // pending
                 created_at: new Date(),
             });
@@ -45,26 +38,75 @@ module.exports = {
             });
         }
 
-        let imagesFolder = appConfigs.uploads.game_images;
-        let imagePath = path.join(__dirname, `./../../uploads/${imagesFolder}/original/${req.custom_dates_folder}/${imageName}`);
-        await multiSharp(imagePath, imageName, imagesFolder, req.custom_dates_folder);
-
-        // TODO: here we just give random point to user. we need to calculate the point using recognizedText
-        game.update({
-            status: status,
-            updated_at: new Date(),
-        });
-
         return res.status(201).json({
-            message: "Game image was successfully uploaded.",
+            message: "Game was successfully created.",
             image_url: imageName,
         });
     },
-    history: async (req, res) => {
+    update: async (req, res) => {
+        let imageName = null;
+        if (req.file) {
+            imageName = req.file.filename;
+        }
+
+        const user = await User.findOne({
+            where: { email: req.jwt_data.email },
+            attributes: ['id']
+        });
+        if (user) {
+            await Game.update({
+                user_id: user.dataValues.id,
+                image: imageName,
+                text: null,
+                status: 0, // pending
+                updated_at: new Date(),
+            });
+        } else {
+            return res.status(403).json({
+                error: "Something went wrong!" // 500
+            });
+        }
+
+        return res.status(201).json({
+            message: "Game was successfully updated.",
+            image_url: imageName,
+        });
+    },
+    delete: async (req, res) => {
+        let imageName = null;
+        if (req.file) {
+            imageName = req.file.filename;
+        }
+
+        const user = await User.findOne({
+            where: { email: req.jwt_data.email },
+            attributes: ['id']
+        });
+        console.log(req.body. req.params)
+        if (user) {
+            await Game.destroy({
+                id: req.body.gameId,
+            });
+        } else {
+            return res.status(403).json({
+                error: "Something went wrong!" // 500
+            });
+        }
+
+        let imagesFolder = appConfigs.uploads.game_images;
+        let imagePath = path.join(__dirname, `./../uploads/${imagesFolder}/original/${req.custom_dates_folder}/${imageName}`);
+        await multiSharp(imagePath, imageName, imagesFolder, req.custom_dates_folder);
+
+        return res.status(201).json({
+            message: "Game was successfully updated.",
+            image_url: imageName,
+        });
+    },
+    list: async (req, res) => {
         const data = validate.history(req.query).filteredData;
 
         const user = await User.findOne({
-            where: { email: req.user.email },
+            where: { email: req.jwt_data.email },
             attributes: ['id'],
         });
         if (!user) {
@@ -87,7 +129,6 @@ module.exports = {
             attributes: [
                 'id',
                 'image',
-                'point',
                 'status',
                 'created_at',
             ],

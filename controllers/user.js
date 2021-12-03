@@ -45,7 +45,7 @@ module.exports = {
         const data = validationResult.filteredData;
 
         const foundUser = await User.findOne({
-            where: { email: req.user.email },
+            where: { email: req.jwt_data.email },
             attributes: ['id', 'password'],
         });
         if (foundUser) {
@@ -137,7 +137,7 @@ module.exports = {
         const data = validationResult.filteredData;
 
         const foundUser = await User.findOne({
-            where: { email: req.user.email }
+            where: { email: req.jwt_data.email }
         });
         if (!foundUser) {
             return res.status(409).json({

@@ -9,14 +9,10 @@ const buildFolderStructure = require('./../utilities/folder-structure');
 
 
 
-router.post('/upload-image',
-    jwtFormat,
-    jwtAuth,
-    buildFolderStructure.game,
-    gameUpload.single('image'),
-    gameController.upload
-);
-router.get('/history', jwtFormat, jwtAuth, gameController.history);
+router.post('/create', jwtFormat, jwtAuth, buildFolderStructure.game, gameUpload.single('image'), gameController.create);
+router.put('/update/:gameId', jwtFormat, jwtAuth, buildFolderStructure.game, gameUpload.single('image'), gameController.update);
+router.delete('/delete/:gameId', jwtFormat, jwtAuth, gameController.delete);
+router.get('/list', jwtFormat, jwtAuth, gameController.list);
 
 
 
