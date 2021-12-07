@@ -1,5 +1,6 @@
 'use strict';
 
+const path = require('path');
 const {
     User,
 } = require('./../models');
@@ -7,9 +8,12 @@ const {
 
 module.exports = {
     main: (req, res) => {
-        return res.status(200).json({
-            data: "Root URL",
-        });
+        const filePath = path.join(__dirname + './../views/index.html');
+        res.sendFile(filePath);
+    },
+    about: (req, res) => {
+        const filePath = path.join(__dirname + './../views/about.html');
+        res.sendFile(filePath);
     },
     users: async (req, res) => {
         const users = await User.findAll();

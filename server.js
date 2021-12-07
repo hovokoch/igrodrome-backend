@@ -60,6 +60,7 @@ app.set('view engine', 'handlebars');
 
 // Main Routes
 app.get('/', require('./routes/main').main);
+app.get('/', require('./routes/main').about);
 app.get('/users', require('./routes/main').users);
 
 // Client API
