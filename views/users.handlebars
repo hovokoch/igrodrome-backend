@@ -1,0 +1,14 @@
+<section id="users" class="container">
+    <h1>All users ({{ users.length }})</h1>
+    {{#each users}}
+    <div class="user">
+        <h3>{{ @key }}</h3>
+        {{#dataValues}}
+            <p>Username: {{name}}</p>
+            <p>Email: {{email}}</p>
+        {{/dataValues}}
+    </div>
+    {{else}}
+    <p>No users available!</p>
+    {{/each}}
+</section>

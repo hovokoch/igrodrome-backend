@@ -4,6 +4,7 @@ require('dotenv').config();
 const port = process.env.APP_PORT;
 const http = require('http');
 const express = require('express');
+const expHbs = require('express-handlebars');
 const helmet = require('helmet');
 const path = require('path');
 const app = express();
@@ -50,9 +51,16 @@ app.use('/user-avatars', express.static(path.join(__dirname, 'uploads/' + appCon
 app.use('/games', express.static(path.join(__dirname, 'uploads/' + appConfigs.uploads.game_images)));
 
 
+// Express HandleBars
+app.engine('handlebars', expHbs.engine({
+    defaultLayout: 'main',
+}));
+app.set('view engine', 'handlebars');
+
 
 // Main Routes
 app.get('/', require('./routes/main').main);
+app.get('/users', require('./routes/main').users);
 
 // Client API
 app.use('/v1/auth', require('./routes/auth'));
